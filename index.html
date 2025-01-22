@@ -1,624 +1,1016 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
- <meta name="google-site-verification" content="280YBjhxua-rE3forMFlbEecgQYIpSepaGzGk0ynUeU" />
-  <meta name="description" content="Use our online currency converter to easily convert between different currencies. Fast, accurate, and free to use.">
-<meta name="keywords" content="currency converter, convert money, exchange rates, currency exchange">
-<meta property="og:title" content="Currency Converter - Convert Your Money Easily">
-<meta property="og:description" content="Easily convert between multiple currencies with our free, fast, and accurate tool.">
-<meta property="og:image" content="path-to-your-image.jpg">
+  <meta name="google-site-verification" content="280YBjhxua-rE3forMFlbEecgQYIpSepaGzGk0ynUeU" />
+  <meta name="description"
+    content="Use our online currency converter to easily convert between different currencies. Fast, accurate, and free to use.">
+  <meta name="keywords" content="currency converter, convert money, exchange rates, currency exchange">
+  <meta property="og:title" content="Currency Converter - Convert Your Money Easily">
+  <meta property="og:description"
+    content="Easily convert between multiple currencies with our free, fast, and accurate tool.">
+  <meta property="og:image" content="path-to-your-image.jpg">
 
   <link rel="icon" href="Assets/favicon.ico.png">
- <title>Currency Converter - Convert Your Money Easily</title>
+  <title>Currency Converter - Convert Your Money Easily</title>
 
- <style>
-  
-body {
-    font-family: 'Arial', sans-serif;
-    /* background: linear-gradient(135deg, #f0f8ff, #a8d8ea); */
-    background: url(Assets/istockphoto-926560310-612x612.jpg)no-repeat center;
-    color: #000000;
-    background-size: cover;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    overflow: hidden;
-    /* Disable text selection for all elements */
-    user-select: none; /* Prevent text selection */
-    -webkit-user-select: none; /* For Safari */
-    -moz-user-select: none; /* For Firefox */
-    -ms-user-select: none; /* For IE10+ */
-  }
-  
-  .hero{
-    position: absolute;
-    width: 500px;
-    height: 500px;
-align-items: center;
-    border: none;
-    border-radius: 10px;
-    display: flex;
-    justify-content: space-evenly;
-    flex-direction:column;
-backdrop-filter: blur(40px);
-  }
-  h2 {
-position: relative;
-top: -110px;
-    text-align: center;
-    margin-bottom: 20px;
-    font-size: 2rem;
-    color: #222;
-  }
-  
-  /* Dropdown Styles */
-  .dropdown {
-    position: absolute;
-    top: 120px;
-    width: 220px;
-    margin-bottom: 20px;
-    cursor: pointer;
-    font-size: 1rem;
-    text-align: left;
+  <style>
+    body {
+      white-space: nowrap;
+      font-family: 'Arial', sans-serif;
+      /* background: linear-gradient(135deg, #f0f8ff, #a8d8ea); */
+      background: url(Assets/istockphoto-926560310-612x612.jpg)no-repeat center;
+      color: #000000;
+      background-size: cover;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+      /* Disable text selection for all elements */
+      user-select: none;
+      /* Prevent text selection */
+      -webkit-user-select: none;
+      /* For Safari */
+      -moz-user-select: none;
+      /* For Firefox */
+      -ms-user-select: none;
+      /* For IE10+ */
+    }
 
-  }#to-dropdown{
-    right: 20px;
-  }#from-dropdown{
-    left: 20px;
-  }
-  .fromp{
-    position:absolute;
-    top: 80px;
-    left: 25px;
-  }.top{
-    position:absolute;
-    top: 80px;
-right: 220px;
-  }
-  .dropdown .selected-value {
-    /* background: #fff; */
-    backdrop-filter: blur(100px);
-    /* border: 2px solid #007acc; */
-    padding: 10px 15px;
-    color: #333;
-    border-radius: 8px;
-    box-shadow: 0 0px 8px rgba(0, 0, 0, 0.9);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
+    .cnname {
+      display: inline;
+      font-size: 13px;
+      color: #005f99;
+    }
 
-  /* Dropdown Options - Scrollable */
-.dropdown-options {
-    display: none;
-    position: absolute;
-    top: calc(100% + 5px);
-    left: 0;
-    width: 100%;
-    /* backdrop-filter: blur(100px); */
-    background: rgba(255, 255, 255, 0.581);
-    border-radius: 8px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.9);
-    z-index: 10;
-    max-height: 200px; /* Set maximum height for the dropdown */
-    overflow-y: auto;  /* Enable vertical scrolling when content exceeds height */
-    scrollbar-width: thin; /* Firefox - thin scrollbar */
-    scrollbar-color: #007acc #f0f8ff; /* Firefox - custom scrollbar colors */
-  }
-  
-  /* Optional: Custom Scrollbar Styles for WebKit Browsers */
-  .dropdown-options::-webkit-scrollbar {
-    width: 8px; /* Set scrollbar width */
-  }
-  
-  .dropdown-options::-webkit-scrollbar-thumb {
-    background-color: #007acc; /* Scrollbar color */
-    border-radius: 4px; /* Rounded corners */
-  }
-  
-  .dropdown-options::-webkit-scrollbar-track {
-    background: #f0f8ff; /* Scrollbar track color */
-  }
-  .dropdown.open .dropdown-options {
-    display: block;
-  }
-  
-  .dropdown-options div {
-    padding: 10px 15px;
-    transition: background 0.2s;
-  }
-  
-  .dropdown-options div:hover {
-    background: #007acc;
-    color: #fff;
-  }
-  
-  /* Input Styles */
-  input[type="number"] {
-    width: 100%;
-    max-width: 450px;
-    height: 30px;
-    padding: 10px;
-    position:absolute;
-    background-color:transparent;
-    top: 200px;
-    left: 13px;
-    margin: 10px 0;
-    backdrop-filter: blur(400px);
-    border: none;
-    border-radius: 8px;
-    box-shadow: 0 0px 8px rgba(0, 0, 0, 0.9);
-    font-size: 1rem;
-    outline: none;
-  }
-  
-  /* Button Styles */
-  button {position: absolute;
-    top: 350px;
-    display: block;
-    margin: 20px auto;
-    padding: 12px 20px;
-    background: #007acc;
-    color: #fff;
-    font-size: 1rem;
-    font-weight: bold;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background 0.3s, transform 0.2s;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-  }
-  
-  button:hover {
-    background: #005f99;
-    transform: translateY(-2px);
-  }
-  
-  /* Scoreboard Popup Animation */
-  #popup {
-    position:fixed;
-    top: -100%;
-    left: 50%;
-    transform: translateX(-50%);
-    background: #007acc;
-    color: #fff;
-    padding: 20px 40px;
-    font-size: 2rem;
-    font-weight: bold;
-    border-radius: 12px;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-    transition: top 0.5s ease, opacity 0.5s ease;
-    opacity: 0;
-    z-index: 1000;
-  }
-  
-  #popup.show {
-    top: 20%;
-    opacity: 1;
-  }
-  .amount{
-    position: relative;left: -180px;top: -163px;
-  }
-  /* Responsive Design */
-  @media (max-width: 600px) and (max-width:700px) {
+    .hero {
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      align-items: center;
+      border: none;
+      border-radius: 10px;
+      display: flex;
+      justify-content: space-evenly;
+      flex-direction: column;
+      backdrop-filter: blur(40px);
+    }
+
     h2 {
-        top:-80px;
-    
-      font-size: 1.5rem;
+      position: relative;
+      top: -110px;
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: 2rem;
+      color: #222;
     }
-  .hero{
-    width: 330px;
-    height: 400px;
-  }
+
+    /* Dropdown Styles */
     .dropdown {
-      width: 140px;
+      position: absolute;
+      top: 120px;
+      width: 220px;
+      margin-bottom: 20px;
+      cursor: pointer;
+      font-size: 1rem;
+      text-align: left;
+
     }
-    .fromp{
-        position:absolute;
+
+    #to-dropdown {
+      right: 20px;
+    }
+
+    #from-dropdown {
+      left: 20px;
+    }
+
+    .fromp {
+      position: absolute;
+      top: 80px;
+      left: 25px;
+    }
+
+    .top {
+      position: absolute;
+      top: 80px;
+      right: 220px;
+    }
+
+    .dropdown .selected-value {
+      /* background: #fff; */
+      backdrop-filter: blur(100px);
+      /* border: 2px solid #007acc; */
+      padding: 10px 15px;
+      color: #333;
+      border-radius: 8px;
+      box-shadow: 0 0px 8px rgba(0, 0, 0, 0.9);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    /* Dropdown Options - Scrollable */
+    .dropdown-options {
+      display: none;
+      position: absolute;
+      top: calc(100% + 5px);
+      left: 0;
+      width: 100%;
+      /* backdrop-filter: blur(100px); */
+      background: rgba(255, 255, 255, 0.581);
+      border-radius: 8px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.9);
+      z-index: 10;
+      max-height: 200px;
+      /* Set maximum height for the dropdown */
+      overflow-x: hidden;
+      /* Enable vertical scrolling when content exceeds height */
+      /* scrollbar-width: thin; */
+      /* Firefox - thin scrollbar */
+      /* scrollbar-color: #000000 #f0f8ff; Firefox - custom scrollbar colors */
+    }
+
+    /* Optional: Custom Scrollbar Styles for WebKit Browsers */
+    .dropdown-options::-webkit-scrollbar {
+      display: none;
+    }
+
+
+    .dropdown.open .dropdown-options {
+      display: block;
+    }
+
+    .dropdown-options .currency {
+      padding: 10px 15px;
+      transition: background 0.2s;
+    }
+
+    .dropdown-options .currency:hover {
+      background: #007acc;
+      color: #fff;
+    }
+
+    /* Input Styles */
+    input[type="number"] {
+      width: 100%;
+      max-width: 450px;
+      height: 30px;
+      padding: 10px;
+      position: absolute;
+      background-color: transparent;
+      top: 200px;
+      left: 13px;
+      margin: 10px 0;
+      backdrop-filter: blur(400px);
+      border: none;
+      border-radius: 8px;
+      box-shadow: 0 0px 8px rgba(0, 0, 0, 0.9);
+      font-size: 1rem;
+      outline: none;
+      caret-color: #005f99;
+    }
+
+    /* Button Styles */
+    button {
+      position: absolute;
+      top: 350px;
+      display: block;
+      margin: 20px auto;
+      padding: 12px 20px;
+      background: #007acc;
+      color: #fff;
+      font-size: 1rem;
+      font-weight: bold;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.2s;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    button:hover {
+      background: #005f99;
+      transform: translateY(-2px);
+    }
+
+    /* Scoreboard Popup Animation */
+    #popup {
+      position: fixed;
+      top: -100%;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #007acc;
+      color: #fff;
+      padding: 20px 40px;
+      font-size: 2rem;
+      font-weight: bold;
+      border-radius: 12px;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+      transition: top 0.5s ease, opacity 0.5s ease;
+      opacity: 0;
+      z-index: 1000;
+    }
+
+    #popup.show {
+      top: 20%;
+      opacity: 1;
+    }
+
+    .amount {
+      position: relative;
+      left: -180px;
+      top: -163px;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 600px) and (max-width:700px) {
+      h2 {
+        top: -80px;
+
+        font-size: 1.5rem;
+      }
+
+      .hero {
+        width: 330px;
+        height: 400px;
+      }
+
+      .dropdown {
+        width: 140px;
+      }
+
+      .fromp {
+        position: absolute;
         top: 80px;
         left: 25px;
-      }.top{
-        position:absolute;
+      }
+
+      .top {
+        position: absolute;
         top: 80px;
-    right: 140px;
-      }.amount{
-       left: -100px;top: -93px;
-      } button{
+        right: 140px;
+      }
+
+      .amount {
+        left: -100px;
+        top: -93px;
+      }
+
+      button {
         top: 300px;
       }
-    input[type="number"] {
-   width: 290px;
-   left: 10px;
+
+      input[type="number"] {
+        width: 290px;
+        left: 10px;
+      }
+
+      button {
+        font-size: 0.9rem;
+        padding: 10px 16px;
+      }
     }
-  
-    button {
-      font-size: 0.9rem;
-      padding: 10px 16px;
+
+
+    .selcur {
+      font-weight: 600;
+      position: absolute;
+
     }
-  }
+
+    .selfrom {
+      top: 260px;
+    }
+
+    .selto {
+
+      top: 280px;
+    }
+
+    .search {
+      position: relative;
+      width: 100%;
+      height: 40px;
+    }
+
+    .search input {
+      outline: none;
+      position: absolute;
+      z-index: 1;
+      width: 100%;
+      height: 30px;
+      border: none;
+      background-color: transparent;
+      padding: 5px 10px;
+      border-bottom: 2px solid black;
+      font-size: 13px;
+      caret-color: #005f99;
+    }
 
 
-  .selcur{
-    font-weight: 600;
-    position: absolute;
-
-  }.selfrom{
-top: 260px;
-  }.selto{
-
-    top: 280px;
-  }
-  
-
- </style>
+    /* ::-webkit-scrollbar { scrollbar-width:thin;} */
+  </style>
 </head>
+
 <body>
 
-<div class="hero">
-  <h2>Currency Conversion</h2>
+  <div class="hero">
+    <h2>Currency Conversion</h2>
 
-<!-- From Dropdown --><p class="fromp">From</p>
-<div id="from-dropdown" class="dropdown">
-  <span class="selected-value">USD</span>
-  <div class="dropdown-options">
-    <div data-value="USD">USD</div>
-    <div data-value="EUR">EUR</div>
-    <div data-value="GBP">GBP</div>
-    <div data-value="JPY">JPY</div>
-    <div data-value="AUD">AUD</div>
-    <div data-value="AED">AED</div>
-    <div data-value="AFN">AFN</div>
-    <div data-value="ALL">ALL</div>
-    <div data-value="AMD">AMD</div>
-    <div data-value="ANG">ANG</div>
-    <div data-value="AOA">AOA</div>
-    <div data-value="ARS">ARS</div>
-    <div data-value="AUD">AUD</div>
-    <div data-value="AWG">AWG</div>
-    <div data-value="AZN">AZN</div>
-    <div data-value="BAM">BAM</div>
-    <div data-value="BBD">BBD</div>
-    <div data-value="BDT">BDT</div>
-    <div data-value="BGN">BGN</div>
-    <div data-value="BHD">BHD</div>
-    <div data-value="BIF">BIF</div>
-    <div data-value="BMD">BMD</div>
-    <div data-value="BND">BND</div>
-    <div data-value="BOB">BOB</div>
-    <div data-value="BRL">BRL</div>
-    <div data-value="BSD">BSD</div>
-    <div data-value="BTN">BTN</div>
-    <div data-value="BWP">BWP</div>
-    <div data-value="BYN">BYN</div>
-    <div data-value="BZD">BZD</div>
-    <div data-value="CAD">CAD</div>
-    <div data-value="CDF">CDF</div>
-    <div data-value="CHF">CHF</div>
-    <div data-value="CLP">CLP</div>
-    <div data-value="CNY">CNY</div>
-    <div data-value="COP">COP</div>
-    <div data-value="CRC">CRC</div>
-    <div data-value="CUP">CUP</div>
-    <div data-value="CVE">CVE</div>
-    <div data-value="CZK">CZK</div>
-    <div data-value="DJF">DJF</div>
-    <div data-value="DKK">DKK</div>
-    <div data-value="DOP">DOP</div>
-    <div data-value="DZD">DZD</div>
-    <div data-value="EGP">EGP</div>
-    <div data-value="ERN">ERN</div>
-    <div data-value="ETB">ETB</div>
-    <div data-value="EUR">EUR</div>
-    <div data-value="FJD">FJD</div>
-    <div data-value="FKP">FKP</div>
-    <div data-value="FOK">FOK</div>
-    <div data-value="GBP">GBP</div>
-    <div data-value="GEL">GEL</div>
-    <div data-value="GGP">GGP</div>
-    <div data-value="GHS">GHS</div>
-    <div data-value="GIP">GIP</div>
-    <div data-value="GMD">GMD</div>
-    <div data-value="GNF">GNF</div>
-    <div data-value="GTQ">GTQ</div>
-    <div data-value="GYD">GYD</div>
-    <div data-value="HKD">HKD</div>
-    <div data-value="HNL">HNL</div>
-    <div data-value="HRK">HRK</div>
-    <div data-value="HTG">HTG</div>
-    <div data-value="HUF">HUF</div>
-    <div data-value="IDR">IDR</div>
-    <div data-value="ILS">ILS</div>
-    <div data-value="IMP">IMP</div>
-    <div data-value="INR">INR</div>
-    <div data-value="IQD">IQD</div>
-    <div data-value="IRR">IRR</div>
-    <div data-value="ISK">ISK</div>
-    <div data-value="JMD">JMD</div>
-    <div data-value="JOD">JOD</div>
-    <div data-value="JPY">JPY</div>
-    <div data-value="KES">KES</div>
-    <div data-value="KGS">KGS</div>
-    <div data-value="KHR">KHR</div>
-    <div data-value="KMF">KMF</div>
-    <div data-value="KPW">KPW</div>
-    <div data-value="KRW">KRW</div>
-    <div data-value="KWD">KWD</div>
-    <div data-value="KYD">KYD</div>
-    <div data-value="KZT">KZT</div>
-    <div data-value="LAK">LAK</div>
-    <div data-value="LBP">LBP</div>
-    <div data-value="LKR">LKR</div>
-    <div data-value="LRD">LRD</div>
-    <div data-value="LSL">LSL</div>
-    <div data-value="LYD">LYD</div>
-    <div data-value="MAD">MAD</div>
-    <div data-value="MDL">MDL</div>
-    <div data-value="MGA">MGA</div>
-    <div data-value="MKD">MKD</div>
-    <div data-value="MMK">MMK</div>
-    <div data-value="MNT">MNT</div>
-    <div data-value="MOP">MOP</div>
-    <div data-value="MRU">MRU</div>
-    <div data-value="MUR">MUR</div>
-    <div data-value="MVR">MVR</div>
-    <div data-value="MWK">MWK</div>
-    <div data-value="MXN">MXN</div>
-    <div data-value="MYR">MYR</div>
-    <div data-value="MZN">MZN</div>
-    <div data-value="NAD">NAD</div>
-    <div data-value="NGN">NGN</div>
-    <div data-value="NIO">NIO</div>
-    <div data-value="NOK">NOK</div>
-    <div data-value="NPR">NPR</div>
-    <div data-value="NZD">NZD</div>
-    <div data-value="OMR">OMR</div>
-    <div data-value="PAB">PAB</div>
-    <div data-value="PEN">PEN</div>
-    <div data-value="PGK">PGK</div>
-    <div data-value="PHP">PHP</div>
-    <div data-value="PKR">PKR</div>
-    <div data-value="PLN">PLN</div>
-    <div data-value="PYG">PYG</div>
-    <div data-value="QAR">QAR</div>
-    <div data-value="RON">RON</div>
-    <div data-value="RSD">RSD</div>
-    <div data-value="RUB">RUB</div>
-    <div data-value="RWF">RWF</div>
-    <div data-value="SAR">SAR</div>
-    <div data-value="SBD">SBD</div>
-    <div data-value="SCR">SCR</div>
-    <div data-value="SDG">SDG</div>
-    <div data-value="SEK">SEK</div>
-    <div data-value="SGD">SGD</div>
-    <div data-value="SHP">SHP</div>
-    <div data-value="SLL">SLL</div>
-    <div data-value="SOS">SOS</div>
-    <div data-value="SRD">SRD</div>
-    <div data-value="SSP">SSP</div>
-    <div data-value="STN">STN</div>
-    <div data-value="SYP">SYP</div>
-    <div data-value="SZL">SZL</div>
-    <div data-value="THB">THB</div>
-    <div data-value="TJS">TJS</div>
-    <div data-value="TMT">TMT</div>
-    <div data-value="TND">TND</div>
-    <div data-value="TOP">TOP</div>
-    <div data-value="TRY">TRY</div>
-    <div data-value="TTD">TTD</div>
-    <div data-value="TVD">TVD</div>
-    <div data-value="TWD">TWD</div>
-    <div data-value="TZS">TZS</div>
-    <div data-value="UAH">UAH</div>
-    <div data-value="UGX">UGX</div>
-    <div data-value="USD">USD</div>
-    <div data-value="UYU">UYU</div>
-    <div data-value="UZS">UZS</div>
-    <div data-value="VES">VES</div>
-    <div data-value="VND">VND</div>
-    <div data-value="VUV">VUV</div>
-    <div data-value="WST">WST</div>
-    <div data-value="XAF">XAF</div>
-    <div data-value="XCD">XCD</div>
-    <div data-value="XDR">XDR</div>
-    <div data-value="XOF">XOF</div>
-    <div data-value="XPF">XPF</div>
-    <div data-value="YER">YER</div>
-    <div data-value="ZAR">ZAR</div>
-    <div data-value="ZMW">ZMW</div>
-    <div data-value="ZWL">ZWL</div>
+    <!-- From Dropdown -->
+    <p class="fromp">From</p>
+    <div id="from-dropdown" class="dropdown">
+      <span class="selected-value">USD</span>
+      <div class="dropdown-options">
+        <div class="search">
+          <input type="text" id="searchInputfrom" class="searchInput" onkeyup="searchCurrencies()"
+            placeholder="Search for countries or currencies...">
+        </div>
+
+
+
+
+
+
+        <div class="currency" data-value="USD">USD <p class="cnname">United States Dollar</p>
+        </div>
+        <div class="currency" data-value="EUR">EUR <p class="cnname">Euro</p>
+        </div>
+        <div class="currency" data-value="GBP">GBP <p class="cnname">British Pound</p>
+        </div>
+        <div class="currency" data-value="JPY">JPY <p class="cnname">Japanese Yen</p>
+        </div>
+        <div class="currency" data-value="AUD">AUD <p class="cnname">Australian Dollar</p>
+        </div>
+        <div class="currency" data-value="AED">AED <p class="cnname">United Arab Emirates Dirham</p>
+        </div>
+        <div class="currency" data-value="AFN">AFN <p class="cnname">Afghan Afghani</p>
+        </div>
+        <div class="currency" data-value="ALL">ALL <p class="cnname">Albanian Lek</p>
+        </div>
+        <div class="currency" data-value="AMD">AMD <p class="cnname">Armenian Dram</p>
+        </div>
+        <div class="currency" data-value="ANG">ANG <p class="cnname">Netherlands Antillean Guilder</p>
+        </div>
+        <div class="currency" data-value="AOA">AOA <p class="cnname">Angolan Kwanza</p>
+        </div>
+        <div class="currency" data-value="ARS">ARS <p class="cnname">Argentine Peso</p>
+        </div>
+        <div class="currency" data-value="AWG">AWG <p class="cnname">Aruban Florin</p>
+        </div>
+        <div class="currency" data-value="AZN">AZN <p class="cnname">Azerbaijani Manat</p>
+        </div>
+        <div class="currency" data-value="BAM">BAM <p class="cnname">Bosnia and Herzegovina Convertible Marka</p>
+        </div>
+        <div class="currency" data-value="BBD">BBD <p class="cnname">Barbadian Dollar</p>
+        </div>
+        <div class="currency" data-value="BDT">BDT <p class="cnname">Bangladeshi Taka</p>
+        </div>
+        <div class="currency" data-value="BGN">BGN <p class="cnname">Bulgarian Lev</p>
+        </div>
+        <div class="currency" data-value="BHD">BHD <p class="cnname">Bahraini Dinar</p>
+        </div>
+        <div class="currency" data-value="BIF">BIF <p class="cnname">Burundian Franc</p>
+        </div>
+        <div class="currency" data-value="BMD">BMD <p class="cnname">Bermudian Dollar</p>
+        </div>
+        <div class="currency" data-value="BND">BND <p class="cnname">Brunei Dollar</p>
+        </div>
+        <div class="currency" data-value="BOB">BOB <p class="cnname">Bolivian Boliviano</p>
+        </div>
+        <div class="currency" data-value="BRL">BRL <p class="cnname">Brazilian Real</p>
+        </div>
+        <div class="currency" data-value="BSD">BSD <p class="cnname">Bahamian Dollar</p>
+        </div>
+        <div class="currency" data-value="BTN">BTN <p class="cnname">Bhutanese Ngultrum</p>
+        </div>
+        <div class="currency" data-value="BWP">BWP <p class="cnname">Botswana Pula</p>
+        </div>
+        <div class="currency" data-value="BYN">BYN <p class="cnname">Belarusian Ruble</p>
+        </div>
+        <div class="currency" data-value="BZD">BZD <p class="cnname">Belize Dollar</p>
+        </div>
+        <div class="currency" data-value="CAD">CAD <p class="cnname">Canadian Dollar</p>
+        </div>
+        <div class="currency" data-value="CDF">CDF <p class="cnname">Congolese Franc</p>
+        </div>
+        <div class="currency" data-value="CHF">CHF <p class="cnname">Swiss Franc</p>
+        </div>
+        <div class="currency" data-value="CLP">CLP <p class="cnname">Chilean Peso</p>
+        </div>
+        <div class="currency" data-value="CNY">CNY <p class="cnname">Chinese Yuan</p>
+        </div>
+        <div class="currency" data-value="COP">COP <p class="cnname">Colombian Peso</p>
+        </div>
+        <div class="currency" data-value="CRC">CRC <p class="cnname">Costa Rican Colón</p>
+        </div>
+        <div class="currency" data-value="CUP">CUP <p class="cnname">Cuban Peso</p>
+        </div>
+        <div class="currency" data-value="CVE">CVE <p class="cnname">Cape Verdean Escudo</p>
+        </div>
+        <div class="currency" data-value="CZK">CZK <p class="cnname">Czech Koruna</p>
+        </div>
+        <div class="currency" data-value="DJF">DJF <p class="cnname">Djiboutian Franc</p>
+        </div>
+        <div class="currency" data-value="DKK">DKK <p class="cnname">Danish Krone</p>
+        </div>
+        <div class="currency" data-value="DOP">DOP <p class="cnname">Dominican Peso</p>
+        </div>
+        <div class="currency" data-value="DZD">DZD <p class="cnname">Algerian Dinar</p>
+        </div>
+        <div class="currency" data-value="EGP">EGP <p class="cnname">Egyptian Pound</p>
+        </div>
+        <div class="currency" data-value="ERN">ERN <p class="cnname">Eritrean Nakfa</p>
+        </div>
+        <div class="currency" data-value="ETB">ETB <p class="cnname">Ethiopian Birr</p>
+        </div>
+        <div class="currency" data-value="EUR">EUR <p class="cnname">Euro</p>
+        </div>
+        <div class="currency" data-value="FJD">FJD <p class="cnname">Fijian Dollar</p>
+        </div>
+        <div class="currency" data-value="FKP">FKP <p class="cnname">Falkland Islands Pound</p>
+        </div>
+        <div class="currency" data-value="FOK">FOK <p class="cnname">Faroese Króna</p>
+        </div>
+        <div class="currency" data-value="GBP">GBP <p class="cnname">British Pound</p>
+        </div>
+        <div class="currency" data-value="GEL">GEL <p class="cnname">Georgian Lari</p>
+        </div>
+        <div class="currency" data-value="GGP">GGP <p class="cnname">Guernsey Pound</p>
+        </div>
+        <div class="currency" data-value="GHS">GHS <p class="cnname">Ghanaian Cedi</p>
+        </div>
+        <div class="currency" data-value="GIP">GIP <p class="cnname">Gibraltar Pound</p>
+        </div>
+        <div class="currency" data-value="GMD">GMD <p class="cnname">Gambian Dalasi</p>
+        </div>
+        <div class="currency" data-value="GNF">GNF <p class="cnname">Guinean Franc</p>
+        </div>
+        <div class="currency" data-value="GTQ">GTQ <p class="cnname">Guatemalan Quetzal</p>
+        </div>
+        <div class="currency" data-value="GYD">GYD <p class="cnname">Guyanese Dollar</p>
+        </div>
+        <div class="currency" data-value="HKD">HKD <p class="cnname">Hong Kong Dollar</p>
+        </div>
+        <div class="currency" data-value="HNL">HNL <p class="cnname">Honduran Lempira</p>
+        </div>
+        <div class="currency" data-value="HRK">HRK <p class="cnname">Croatian Kuna</p>
+        </div>
+        <div class="currency" data-value="HTG">HTG <p class="cnname">Haitian Gourde</p>
+        </div>
+        <div class="currency" data-value="HUF">HUF <p class="cnname">Hungarian Forint</p>
+        </div>
+        <div class="currency" data-value="IDR">IDR <p class="cnname">Indonesian Rupiah</p>
+        </div>
+        <div class="currency" data-value="ILS">ILS <p class="cnname">Israeli New Shekel</p>
+        </div>
+        <div class="currency" data-value="IMP">IMP <p class="cnname">Isle of Man Pound</p>
+        </div>
+        <div class="currency" data-value="INR">INR <p class="cnname">Indian Rupee</p>
+        </div>
+        <div class="currency" data-value="IQD">IQD <p class="cnname">Iraqi Dinar</p>
+        </div>
+        <div class="currency" data-value="IRR">IRR <p class="cnname">Iranian Rial</p>
+        </div>
+        <div class="currency" data-value="ISK">ISK <p class="cnname">Icelandic Króna</p>
+        </div>
+        <div class="currency" data-value="JMD">JMD <p class="cnname">Jamaican Dollar</p>
+        </div>
+        <div class="currency" data-value="JOD">JOD <p class="cnname">Jordanian Dinar</p>
+        </div>
+        <div class="currency" data-value="JPY">JPY <p class="cnname">Japanese Yen</p>
+        </div>
+        <div class="currency" data-value="KES">KES <p class="cnname">Kenyan Shilling</p>
+        </div>
+        <div class="currency" data-value="KGS">KGS <p class="cnname">Kyrgyzstani Som</p>
+        </div>
+        <div class="currency" data-value="KHR">KHR <p class="cnname">Cambodian Riel</p>
+        </div>
+        <div class="currency" data-value="KMF">KMF <p class="cnname">Comorian Franc</p>
+        </div>
+        <div class="currency" data-value="KPW">KPW <p class="cnname">North Korean Won</p>
+        </div>
+        <div class="currency" data-value="KRW">KRW <p class="cnname">South Korean Won</p>
+        </div>
+        <div class="currency" data-value="KWD">KWD <p class="cnname">Kuwaiti Dinar</p>
+        </div>
+        <div class="currency" data-value="KYD">KYD <p class="cnname">Cayman Islands Dollar</p>
+        </div>
+        <div class="currency" data-value="KZT">KZT <p class="cnname">Kazakhstani Tenge</p>
+        </div>
+        <div class="currency" data-value="LAK">LAK <p class="cnname">Lao Kip</p>
+        </div>
+        <div class="currency" data-value="LBP">LBP <p class="cnname">Lebanese Pound</p>
+        </div>
+        <div class="currency" data-value="LKR">LKR <p class="cnname">Sri Lankan Rupee</p>
+        </div>
+        <div class="currency" data-value="LRD">LRD <p class="cnname">Liberian Dollar</p>
+        </div>
+        <div class="currency" data-value="LSL">LSL <p class="cnname">Lesotho Loti</p>
+        </div>
+        <div class="currency" data-value="LYD">LYD <p class="cnname">Libyan Dinar</p>
+        </div>
+        <div class="currency" data-value="MAD">MAD <p class="cnname">Moroccan Dirham</p>
+        </div>
+        <div class="currency" data-value="MDL">MDL <p class="cnname">Moldovan Leu</p>
+        </div>
+        <div class="currency" data-value="MGA">MGA <p class="cnname">Malagasy Ariary</p>
+        </div>
+        <div class="currency" data-value="MKD">MKD <p class="cnname">Macedonian Denar</p>
+        </div>
+        <div class="currency" data-value="MMK">MMK <p class="cnname">Myanmar Kyat</p>
+        </div>
+        <div class="currency" data-value="MNT">MNT <p class="cnname">Mongolian Tugrik</p>
+        </div>
+        <div class="currency" data-value="MOP">MOP <p class="cnname">Macanese Pataca</p>
+        </div>
+        <div class="currency" data-value="MRU">MRU <p class="cnname">Mauritanian Ouguiya</p>
+        </div>
+        <div class="currency" data-value="MUR">MUR <p class="cnname">Mauritian Rupee</p>
+        </div>
+        <div class="currency" data-value="MVR">MVR <p class="cnname">Maldivian Rufiyaa</p>
+        </div>
+        <div class="currency" data-value="MWK">MWK <p class="cnname">Malawian Kwacha</p>
+        </div>
+        <div class="currency" data-value="MXN">MXN <p class="cnname">Mexican Peso</p>
+        </div>
+        <div class="currency" data-value="MYR">MYR <p class="cnname">Malaysian Ringgit</p>
+        </div>
+        <div class="currency" data-value="MZN">MZN <p class="cnname">Mozambican Metical</p>
+        </div>
+        <div class="currency" data-value="NAD">NAD <p class="cnname">Namibian Dollar</p>
+        </div>
+        <div class="currency" data-value="NGN">NGN <p class="cnname">Nigerian Naira</p>
+        </div>
+        <div class="currency" data-value="NIO">NIO <p class="cnname">Nicaraguan Córdoba</p>
+        </div>
+        <div class="currency" data-value="NOK">NOK <p class="cnname">Norwegian Krone</p>
+        </div>
+        <div class="currency" data-value="NPR">NPR <p class="cnname">Nepalese Rupee</p>
+        </div>
+        <div class="currency" data-value="NZD">NZD <p class="cnname">New Zealand Dollar</p>
+        </div>
+        <div class="currency" data-value="OMR">OMR <p class="cnname">Omani Rial</p>
+        </div>
+        <div class="currency" data-value="PAB">PAB <p class="cnname">Panamanian Balboa</p>
+        </div>
+        <div class="currency" data-value="PEN">PEN <p class="cnname">Peruvian Nuevo Sol</p>
+        </div>
+        <div class="currency" data-value="PHP">PHP <p class="cnname">Philippine Peso</p>
+        </div>
+        <div class="currency" data-value="PKR">PKR <p class="cnname">Pakistani Rupee</p>
+        </div>
+        <div class="currency" data-value="PLN">PLN <p class="cnname">Polish Zloty</p>
+        </div>
+        <div class="currency" data-value="PYG">PYG <p class="cnname">Paraguayan Guarani</p>
+        </div>
+        <div class="currency" data-value="QAR">QAR <p class="cnname">Qatari Rial</p>
+        </div>
+        <div class="currency" data-value="RON">RON <p class="cnname">Romanian Leu</p>
+        </div>
+        <div class="currency" data-value="RSD">RSD <p class="cnname">Serbian Dinar</p>
+        </div>
+        <div class="currency" data-value="RUB">RUB <p class="cnname">Russian Ruble</p>
+        </div>
+        <div class="currency" data-value="RWF">RWF <p class="cnname">Rwandan Franc</p>
+        </div>
+        <div class="currency" data-value="SAR">SAR <p class="cnname">Saudi Riyal</p>
+        </div>
+        <div class="currency" data-value="SBD">SBD <p class="cnname">Solomon Islands Dollar</p>
+        </div>
+        <div class="currency" data-value="SCR">SCR <p class="cnname">Seychellois Rupee</p>
+        </div>
+        <div class="currency" data-value="SDG">SDG <p class="cnname">Sudanese Pound</p>
+        </div>
+        <div class="currency" data-value="SEK">SEK <p class="cnname">Swedish Krona</p>
+        </div>
+        <div class="currency" data-value="SGD">SGD <p class="cnname">Singapore Dollar</p>
+        </div>
+        <div class="currency" data-value="SHP">SHP <p class="cnname">Saint Helena Pound</p>
+        </div>
+        <div class="currency" data-value="SLL">SLL <p class="cnname">Sierra Leonean Leone</p>
+        </div>
+        <div class="currency" data-value="SOS">SOS <p class="cnname">Somali Shilling</p>
+        </div>
+        <div class="currency" data-value="SRD">SRD <p class="cnname">Surinamese Dollar</p>
+        </div>
+        <div class="currency" data-value="SSP">SSP <p class="cnname">South Sudanese Pound</p>
+        </div>
+        <div class="currency" data-value="STN">STN <p class="cnname">São Tomé and Príncipe Dobra</p>
+        </div>
+        <div class="currency" data-value="SYP">SYP <p class="cnname">Syrian Pound</p>
+        </div>
+        <div class="currency" data-value="SZL">SZL <p class="cnname">Swazi Lilangeni</p>
+        </div>
+        <div class="currency" data-value="THB">THB <p class="cnname">Thai Baht</p>
+        </div>
+        <div class="currency" data-value="TJS">TJS <p class="cnname">Tajikistani Somoni</p>
+        </div>
+        <div class="currency" data-value="TMT">TMT <p class="cnname">Turkmenistan Manat</p>
+        </div>
+        <div class="currency" data-value="TND">TND <p class="cnname">Tunisian Dinar</p>
+        </div>
+        <div class="currency" data-value="TOP">TOP <p class="cnname">Tongan Paʻanga</p>
+        </div>
+        <div class="currency" data-value="TRY">TRY <p class="cnname">Turkish Lira</p>
+        </div>
+        <div class="currency" data-value="TTD">TTD <p class="cnname">Trinidad and Tobago Dollar</p>
+        </div>
+        <div class="currency" data-value="TWD">TWD <p class="cnname">Taiwan Dollar</p>
+        </div>
+        <div class="currency" data-value="TZS">TZS <p class="cnname">Tanzanian Shilling</p>
+        </div>
+        <div class="currency" data-value="UAH">UAH <p class="cnname">Ukrainian Hryvnia</p>
+        </div>
+        <div class="currency" data-value="UGX">UGX <p class="cnname">Ugandan Shilling</p>
+        </div>
+        <div class="currency" data-value="UYU">UYU <p class="cnname">Uruguayan Peso</p>
+        </div>
+        <div class="currency" data-value="UZS">UZS <p class="cnname">Uzbekistani Som</p>
+        </div>
+        <div class="currency" data-value="VES">VES <p class="cnname">Venezuelan Bolívar</p>
+        </div>
+        <div class="currency" data-value="VND">VND <p class="cnname">Vietnamese Đồng</p>
+        </div>
+        <div class="currency" data-value="VUV">VUV <p class="cnname">Vanuatu Vatu</p>
+        </div>
+        <div class="currency" data-value="WST">WST <p class="cnname">Samoan Tala</p>
+        </div>
+        <div class="currency" data-value="XAF">XAF <p class="cnname">Central African CFA Franc</p>
+        </div>
+        <div class="currency" data-value="XCD">XCD <p class="cnname">East Caribbean Dollar</p>
+        </div>
+        <div class="currency" data-value="XOF">XOF <p class="cnname">West African CFA Franc</p>
+        </div>
+        <div class="currency" data-value="XPF">XPF <p class="cnname">CFP Franc</p>
+        </div>
+        <div class="currency" data-value="YER">YER <p class="cnname">Yemeni Rial</p>
+        </div>
+        <div class="currency" data-value="ZAR">ZAR <p class="cnname">South African Rand</p>
+        </div>
+        <div class="currency" data-value="ZMW">ZMW <p class="cnname">Zambian Kwacha</p>
+        </div>
+        <div class="currency" data-value="ZWL">ZWL <p class="cnname">Zimbabwean Dollar</p>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- To Dropdown -->
+    <p class="top">To</p>
+    <div id="to-dropdown" class="dropdown">
+      <span class="selected-value">EUR</span>
+      <div class="dropdown-options">
+        <div class="search">
+          <input type="text" id="searchInputto" class="searchInput" onkeyup="searchCurrenciesto()"
+            placeholder="Search for countries or currencies...">
+        </div>
+
+
+        <div class="currency" data-value="USD">USD <p class="cnname">United States Dollar</p>
+        </div>
+        <div class="currency" data-value="EUR">EUR <p class="cnname">Euro</p>
+        </div>
+        <div class="currency" data-value="GBP">GBP <p class="cnname">British Pound</p>
+        </div>
+        <div class="currency" data-value="JPY">JPY <p class="cnname">Japanese Yen</p>
+        </div>
+        <div class="currency" data-value="AUD">AUD <p class="cnname">Australian Dollar</p>
+        </div>
+        <div class="currency" data-value="AED">AED <p class="cnname">United Arab Emirates Dirham</p>
+        </div>
+        <div class="currency" data-value="AFN">AFN <p class="cnname">Afghan Afghani</p>
+        </div>
+        <div class="currency" data-value="ALL">ALL <p class="cnname">Albanian Lek</p>
+        </div>
+        <div class="currency" data-value="AMD">AMD <p class="cnname">Armenian Dram</p>
+        </div>
+        <div class="currency" data-value="ANG">ANG <p class="cnname">Netherlands Antillean Guilder</p>
+        </div>
+        <div class="currency" data-value="AOA">AOA <p class="cnname">Angolan Kwanza</p>
+        </div>
+        <div class="currency" data-value="ARS">ARS <p class="cnname">Argentine Peso</p>
+        </div>
+        <div class="currency" data-value="AWG">AWG <p class="cnname">Aruban Florin</p>
+        </div>
+        <div class="currency" data-value="AZN">AZN <p class="cnname">Azerbaijani Manat</p>
+        </div>
+        <div class="currency" data-value="BAM">BAM <p class="cnname">Bosnia and Herzegovina Convertible Marka</p>
+        </div>
+        <div class="currency" data-value="BBD">BBD <p class="cnname">Barbadian Dollar</p>
+        </div>
+        <div class="currency" data-value="BDT">BDT <p class="cnname">Bangladeshi Taka</p>
+        </div>
+        <div class="currency" data-value="BGN">BGN <p class="cnname">Bulgarian Lev</p>
+        </div>
+        <div class="currency" data-value="BHD">BHD <p class="cnname">Bahraini Dinar</p>
+        </div>
+        <div class="currency" data-value="BIF">BIF <p class="cnname">Burundian Franc</p>
+        </div>
+        <div class="currency" data-value="BMD">BMD <p class="cnname">Bermudian Dollar</p>
+        </div>
+        <div class="currency" data-value="BND">BND <p class="cnname">Brunei Dollar</p>
+        </div>
+        <div class="currency" data-value="BOB">BOB <p class="cnname">Bolivian Boliviano</p>
+        </div>
+        <div class="currency" data-value="BRL">BRL <p class="cnname">Brazilian Real</p>
+        </div>
+        <div class="currency" data-value="BSD">BSD <p class="cnname">Bahamian Dollar</p>
+        </div>
+        <div class="currency" data-value="BTN">BTN <p class="cnname">Bhutanese Ngultrum</p>
+        </div>
+        <div class="currency" data-value="BWP">BWP <p class="cnname">Botswana Pula</p>
+        </div>
+        <div class="currency" data-value="BYN">BYN <p class="cnname">Belarusian Ruble</p>
+        </div>
+        <div class="currency" data-value="BZD">BZD <p class="cnname">Belize Dollar</p>
+        </div>
+        <div class="currency" data-value="CAD">CAD <p class="cnname">Canadian Dollar</p>
+        </div>
+        <div class="currency" data-value="CDF">CDF <p class="cnname">Congolese Franc</p>
+        </div>
+        <div class="currency" data-value="CHF">CHF <p class="cnname">Swiss Franc</p>
+        </div>
+        <div class="currency" data-value="CLP">CLP <p class="cnname">Chilean Peso</p>
+        </div>
+        <div class="currency" data-value="CNY">CNY <p class="cnname">Chinese Yuan</p>
+        </div>
+        <div class="currency" data-value="COP">COP <p class="cnname">Colombian Peso</p>
+        </div>
+        <div class="currency" data-value="CRC">CRC <p class="cnname">Costa Rican Colón</p>
+        </div>
+        <div class="currency" data-value="CUP">CUP <p class="cnname">Cuban Peso</p>
+        </div>
+        <div class="currency" data-value="CVE">CVE <p class="cnname">Cape Verdean Escudo</p>
+        </div>
+        <div class="currency" data-value="CZK">CZK <p class="cnname">Czech Koruna</p>
+        </div>
+        <div class="currency" data-value="DJF">DJF <p class="cnname">Djiboutian Franc</p>
+        </div>
+        <div class="currency" data-value="DKK">DKK <p class="cnname">Danish Krone</p>
+        </div>
+        <div class="currency" data-value="DOP">DOP <p class="cnname">Dominican Peso</p>
+        </div>
+        <div class="currency" data-value="DZD">DZD <p class="cnname">Algerian Dinar</p>
+        </div>
+        <div class="currency" data-value="EGP">EGP <p class="cnname">Egyptian Pound</p>
+        </div>
+        <div class="currency" data-value="ERN">ERN <p class="cnname">Eritrean Nakfa</p>
+        </div>
+        <div class="currency" data-value="ETB">ETB <p class="cnname">Ethiopian Birr</p>
+        </div>
+        <div class="currency" data-value="EUR">EUR <p class="cnname">Euro</p>
+        </div>
+        <div class="currency" data-value="FJD">FJD <p class="cnname">Fijian Dollar</p>
+        </div>
+        <div class="currency" data-value="FKP">FKP <p class="cnname">Falkland Islands Pound</p>
+        </div>
+        <div class="currency" data-value="FOK">FOK <p class="cnname">Faroese Króna</p>
+        </div>
+        <div class="currency" data-value="GBP">GBP <p class="cnname">British Pound</p>
+        </div>
+        <div class="currency" data-value="GEL">GEL <p class="cnname">Georgian Lari</p>
+        </div>
+        <div class="currency" data-value="GGP">GGP <p class="cnname">Guernsey Pound</p>
+        </div>
+        <div class="currency" data-value="GHS">GHS <p class="cnname">Ghanaian Cedi</p>
+        </div>
+        <div class="currency" data-value="GIP">GIP <p class="cnname">Gibraltar Pound</p>
+        </div>
+        <div class="currency" data-value="GMD">GMD <p class="cnname">Gambian Dalasi</p>
+        </div>
+        <div class="currency" data-value="GNF">GNF <p class="cnname">Guinean Franc</p>
+        </div>
+        <div class="currency" data-value="GTQ">GTQ <p class="cnname">Guatemalan Quetzal</p>
+        </div>
+        <div class="currency" data-value="GYD">GYD <p class="cnname">Guyanese Dollar</p>
+        </div>
+        <div class="currency" data-value="HKD">HKD <p class="cnname">Hong Kong Dollar</p>
+        </div>
+        <div class="currency" data-value="HNL">HNL <p class="cnname">Honduran Lempira</p>
+        </div>
+        <div class="currency" data-value="HRK">HRK <p class="cnname">Croatian Kuna</p>
+        </div>
+        <div class="currency" data-value="HTG">HTG <p class="cnname">Haitian Gourde</p>
+        </div>
+        <div class="currency" data-value="HUF">HUF <p class="cnname">Hungarian Forint</p>
+        </div>
+        <div class="currency" data-value="IDR">IDR <p class="cnname">Indonesian Rupiah</p>
+        </div>
+        <div class="currency" data-value="ILS">ILS <p class="cnname">Israeli New Shekel</p>
+        </div>
+        <div class="currency" data-value="IMP">IMP <p class="cnname">Isle of Man Pound</p>
+        </div>
+        <div class="currency" data-value="INR">INR <p class="cnname">Indian Rupee</p>
+        </div>
+        <div class="currency" data-value="IQD">IQD <p class="cnname">Iraqi Dinar</p>
+        </div>
+        <div class="currency" data-value="IRR">IRR <p class="cnname">Iranian Rial</p>
+        </div>
+        <div class="currency" data-value="ISK">ISK <p class="cnname">Icelandic Króna</p>
+        </div>
+        <div class="currency" data-value="JMD">JMD <p class="cnname">Jamaican Dollar</p>
+        </div>
+        <div class="currency" data-value="JOD">JOD <p class="cnname">Jordanian Dinar</p>
+        </div>
+        <div class="currency" data-value="JPY">JPY <p class="cnname">Japanese Yen</p>
+        </div>
+        <div class="currency" data-value="KES">KES <p class="cnname">Kenyan Shilling</p>
+        </div>
+        <div class="currency" data-value="KGS">KGS <p class="cnname">Kyrgyzstani Som</p>
+        </div>
+        <div class="currency" data-value="KHR">KHR <p class="cnname">Cambodian Riel</p>
+        </div>
+        <div class="currency" data-value="KMF">KMF <p class="cnname">Comorian Franc</p>
+        </div>
+        <div class="currency" data-value="KPW">KPW <p class="cnname">North Korean Won</p>
+        </div>
+        <div class="currency" data-value="KRW">KRW <p class="cnname">South Korean Won</p>
+        </div>
+        <div class="currency" data-value="KWD">KWD <p class="cnname">Kuwaiti Dinar</p>
+        </div>
+        <div class="currency" data-value="KYD">KYD <p class="cnname">Cayman Islands Dollar</p>
+        </div>
+        <div class="currency" data-value="KZT">KZT <p class="cnname">Kazakhstani Tenge</p>
+        </div>
+        <div class="currency" data-value="LAK">LAK <p class="cnname">Lao Kip</p>
+        </div>
+        <div class="currency" data-value="LBP">LBP <p class="cnname">Lebanese Pound</p>
+        </div>
+        <div class="currency" data-value="LKR">LKR <p class="cnname">Sri Lankan Rupee</p>
+        </div>
+        <div class="currency" data-value="LRD">LRD <p class="cnname">Liberian Dollar</p>
+        </div>
+        <div class="currency" data-value="LSL">LSL <p class="cnname">Lesotho Loti</p>
+        </div>
+        <div class="currency" data-value="LYD">LYD <p class="cnname">Libyan Dinar</p>
+        </div>
+        <div class="currency" data-value="MAD">MAD <p class="cnname">Moroccan Dirham</p>
+        </div>
+        <div class="currency" data-value="MDL">MDL <p class="cnname">Moldovan Leu</p>
+        </div>
+        <div class="currency" data-value="MGA">MGA <p class="cnname">Malagasy Ariary</p>
+        </div>
+        <div class="currency" data-value="MKD">MKD <p class="cnname">Macedonian Denar</p>
+        </div>
+        <div class="currency" data-value="MMK">MMK <p class="cnname">Myanmar Kyat</p>
+        </div>
+        <div class="currency" data-value="MNT">MNT <p class="cnname">Mongolian Tugrik</p>
+        </div>
+        <div class="currency" data-value="MOP">MOP <p class="cnname">Macanese Pataca</p>
+        </div>
+        <div class="currency" data-value="MRU">MRU <p class="cnname">Mauritanian Ouguiya</p>
+        </div>
+        <div class="currency" data-value="MUR">MUR <p class="cnname">Mauritian Rupee</p>
+        </div>
+        <div class="currency" data-value="MVR">MVR <p class="cnname">Maldivian Rufiyaa</p>
+        </div>
+        <div class="currency" data-value="MWK">MWK <p class="cnname">Malawian Kwacha</p>
+        </div>
+        <div class="currency" data-value="MXN">MXN <p class="cnname">Mexican Peso</p>
+        </div>
+        <div class="currency" data-value="MYR">MYR <p class="cnname">Malaysian Ringgit</p>
+        </div>
+        <div class="currency" data-value="MZN">MZN <p class="cnname">Mozambican Metical</p>
+        </div>
+        <div class="currency" data-value="NAD">NAD <p class="cnname">Namibian Dollar</p>
+        </div>
+        <div class="currency" data-value="NGN">NGN <p class="cnname">Nigerian Naira</p>
+        </div>
+        <div class="currency" data-value="NIO">NIO <p class="cnname">Nicaraguan Córdoba</p>
+        </div>
+        <div class="currency" data-value="NOK">NOK <p class="cnname">Norwegian Krone</p>
+        </div>
+        <div class="currency" data-value="NPR">NPR <p class="cnname">Nepalese Rupee</p>
+        </div>
+        <div class="currency" data-value="NZD">NZD <p class="cnname">New Zealand Dollar</p>
+        </div>
+        <div class="currency" data-value="OMR">OMR <p class="cnname">Omani Rial</p>
+        </div>
+        <div class="currency" data-value="PAB">PAB <p class="cnname">Panamanian Balboa</p>
+        </div>
+        <div class="currency" data-value="PEN">PEN <p class="cnname">Peruvian Nuevo Sol</p>
+        </div>
+        <div class="currency" data-value="PHP">PHP <p class="cnname">Philippine Peso</p>
+        </div>
+        <div class="currency" data-value="PKR">PKR <p class="cnname">Pakistani Rupee</p>
+        </div>
+        <div class="currency" data-value="PLN">PLN <p class="cnname">Polish Zloty</p>
+        </div>
+        <div class="currency" data-value="PYG">PYG <p class="cnname">Paraguayan Guarani</p>
+        </div>
+        <div class="currency" data-value="QAR">QAR <p class="cnname">Qatari Rial</p>
+        </div>
+        <div class="currency" data-value="RON">RON <p class="cnname">Romanian Leu</p>
+        </div>
+        <div class="currency" data-value="RSD">RSD <p class="cnname">Serbian Dinar</p>
+        </div>
+        <div class="currency" data-value="RUB">RUB <p class="cnname">Russian Ruble</p>
+        </div>
+        <div class="currency" data-value="RWF">RWF <p class="cnname">Rwandan Franc</p>
+        </div>
+        <div class="currency" data-value="SAR">SAR <p class="cnname">Saudi Riyal</p>
+        </div>
+        <div class="currency" data-value="SBD">SBD <p class="cnname">Solomon Islands Dollar</p>
+        </div>
+        <div class="currency" data-value="SCR">SCR <p class="cnname">Seychellois Rupee</p>
+        </div>
+        <div class="currency" data-value="SDG">SDG <p class="cnname">Sudanese Pound</p>
+        </div>
+        <div class="currency" data-value="SEK">SEK <p class="cnname">Swedish Krona</p>
+        </div>
+        <div class="currency" data-value="SGD">SGD <p class="cnname">Singapore Dollar</p>
+        </div>
+        <div class="currency" data-value="SHP">SHP <p class="cnname">Saint Helena Pound</p>
+        </div>
+        <div class="currency" data-value="SLL">SLL <p class="cnname">Sierra Leonean Leone</p>
+        </div>
+        <div class="currency" data-value="SOS">SOS <p class="cnname">Somali Shilling</p>
+        </div>
+        <div class="currency" data-value="SRD">SRD <p class="cnname">Surinamese Dollar</p>
+        </div>
+        <div class="currency" data-value="SSP">SSP <p class="cnname">South Sudanese Pound</p>
+        </div>
+        <div class="currency" data-value="STN">STN <p class="cnname">São Tomé and Príncipe Dobra</p>
+        </div>
+        <div class="currency" data-value="SYP">SYP <p class="cnname">Syrian Pound</p>
+        </div>
+        <div class="currency" data-value="SZL">SZL <p class="cnname">Swazi Lilangeni</p>
+        </div>
+        <div class="currency" data-value="THB">THB <p class="cnname">Thai Baht</p>
+        </div>
+        <div class="currency" data-value="TJS">TJS <p class="cnname">Tajikistani Somoni</p>
+        </div>
+        <div class="currency" data-value="TMT">TMT <p class="cnname">Turkmenistan Manat</p>
+        </div>
+        <div class="currency" data-value="TND">TND <p class="cnname">Tunisian Dinar</p>
+        </div>
+        <div class="currency" data-value="TOP">TOP <p class="cnname">Tongan Paʻanga</p>
+        </div>
+        <div class="currency" data-value="TRY">TRY <p class="cnname">Turkish Lira</p>
+        </div>
+        <div class="currency" data-value="TTD">TTD <p class="cnname">Trinidad and Tobago Dollar</p>
+        </div>
+        <div class="currency" data-value="TWD">TWD <p class="cnname">Taiwan Dollar</p>
+        </div>
+        <div class="currency" data-value="TZS">TZS <p class="cnname">Tanzanian Shilling</p>
+        </div>
+        <div class="currency" data-value="UAH">UAH <p class="cnname">Ukrainian Hryvnia</p>
+        </div>
+        <div class="currency" data-value="UGX">UGX <p class="cnname">Ugandan Shilling</p>
+        </div>
+        <div class="currency" data-value="UYU">UYU <p class="cnname">Uruguayan Peso</p>
+        </div>
+        <div class="currency" data-value="UZS">UZS <p class="cnname">Uzbekistani Som</p>
+        </div>
+        <div class="currency" data-value="VES">VES <p class="cnname">Venezuelan Bolívar</p>
+        </div>
+        <div class="currency" data-value="VND">VND <p class="cnname">Vietnamese Đồng</p>
+        </div>
+        <div class="currency" data-value="VUV">VUV <p class="cnname">Vanuatu Vatu</p>
+        </div>
+        <div class="currency" data-value="WST">WST <p class="cnname">Samoan Tala</p>
+        </div>
+        <div class="currency" data-value="XAF">XAF <p class="cnname">Central African CFA Franc</p>
+        </div>
+        <div class="currency" data-value="XCD">XCD <p class="cnname">East Caribbean Dollar</p>
+        </div>
+        <div class="currency" data-value="XOF">XOF <p class="cnname">West African CFA Franc</p>
+        </div>
+        <div class="currency" data-value="XPF">XPF <p class="cnname">CFP Franc</p>
+        </div>
+        <div class="currency" data-value="YER">YER <p class="cnname">Yemeni Rial</p>
+        </div>
+        <div class="currency" data-value="ZAR">ZAR <p class="cnname">South African Rand</p>
+        </div>
+        <div class="currency" data-value="ZMW">ZMW <p class="cnname">Zambian Kwacha</p>
+        </div>
+        <div class="currency" data-value="ZWL">ZWL <p class="cnname">Zimbabwean Dollar</p>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Input Amount -->
+    <label for="amount" class="amount">Enter Amount:</label>
+    <input type="number" id="amount" placeholder="Enter amount to convert" />
+
+    <p class="selcur selfrom">Selected From Currency: <span id="from-output">USD</span></p>
+    <p class="selcur selto">Selected To Currency: <span id="to-output">EUR</span></p>
+
+    <button id="send-request">Send Request</button>
   </div>
-</div>
-
-<!-- To Dropdown --><p class="top">To</p>
-<div id="to-dropdown" class="dropdown">
-  <span class="selected-value">EUR</span>
-  <div class="dropdown-options">
-    <div data-value="USD">USD</div>
-    <div data-value="EUR">EUR</div>
-    <div data-value="GBP">GBP</div>
-    <div data-value="JPY">JPY</div>
-    <div data-value="AUD">AUD</div>
-    <div data-value="AED">AED</div>
-    <div data-value="AFN">AFN</div>
-    <div data-value="ALL">ALL</div>
-    <div data-value="AMD">AMD</div>
-    <div data-value="ANG">ANG</div>
-    <div data-value="AOA">AOA</div>
-    <div data-value="ARS">ARS</div>
-    <div data-value="AUD">AUD</div>
-    <div data-value="AWG">AWG</div>
-    <div data-value="AZN">AZN</div>
-    <div data-value="BAM">BAM</div>
-    <div data-value="BBD">BBD</div>
-    <div data-value="BDT">BDT</div>
-    <div data-value="BGN">BGN</div>
-    <div data-value="BHD">BHD</div>
-    <div data-value="BIF">BIF</div>
-    <div data-value="BMD">BMD</div>
-    <div data-value="BND">BND</div>
-    <div data-value="BOB">BOB</div>
-    <div data-value="BRL">BRL</div>
-    <div data-value="BSD">BSD</div>
-    <div data-value="BTN">BTN</div>
-    <div data-value="BWP">BWP</div>
-    <div data-value="BYN">BYN</div>
-    <div data-value="BZD">BZD</div>
-    <div data-value="CAD">CAD</div>
-    <div data-value="CDF">CDF</div>
-    <div data-value="CHF">CHF</div>
-    <div data-value="CLP">CLP</div>
-    <div data-value="CNY">CNY</div>
-    <div data-value="COP">COP</div>
-    <div data-value="CRC">CRC</div>
-    <div data-value="CUP">CUP</div>
-    <div data-value="CVE">CVE</div>
-    <div data-value="CZK">CZK</div>
-    <div data-value="DJF">DJF</div>
-    <div data-value="DKK">DKK</div>
-    <div data-value="DOP">DOP</div>
-    <div data-value="DZD">DZD</div>
-    <div data-value="EGP">EGP</div>
-    <div data-value="ERN">ERN</div>
-    <div data-value="ETB">ETB</div>
-    <div data-value="EUR">EUR</div>
-    <div data-value="FJD">FJD</div>
-    <div data-value="FKP">FKP</div>
-    <div data-value="FOK">FOK</div>
-    <div data-value="GBP">GBP</div>
-    <div data-value="GEL">GEL</div>
-    <div data-value="GGP">GGP</div>
-    <div data-value="GHS">GHS</div>
-    <div data-value="GIP">GIP</div>
-    <div data-value="GMD">GMD</div>
-    <div data-value="GNF">GNF</div>
-    <div data-value="GTQ">GTQ</div>
-    <div data-value="GYD">GYD</div>
-    <div data-value="HKD">HKD</div>
-    <div data-value="HNL">HNL</div>
-    <div data-value="HRK">HRK</div>
-    <div data-value="HTG">HTG</div>
-    <div data-value="HUF">HUF</div>
-    <div data-value="IDR">IDR</div>
-    <div data-value="ILS">ILS</div>
-    <div data-value="IMP">IMP</div>
-    <div data-value="INR">INR</div>
-    <div data-value="IQD">IQD</div>
-    <div data-value="IRR">IRR</div>
-    <div data-value="ISK">ISK</div>
-    <div data-value="JMD">JMD</div>
-    <div data-value="JOD">JOD</div>
-    <div data-value="JPY">JPY</div>
-    <div data-value="KES">KES</div>
-    <div data-value="KGS">KGS</div>
-    <div data-value="KHR">KHR</div>
-    <div data-value="KMF">KMF</div>
-    <div data-value="KPW">KPW</div>
-    <div data-value="KRW">KRW</div>
-    <div data-value="KWD">KWD</div>
-    <div data-value="KYD">KYD</div>
-    <div data-value="KZT">KZT</div>
-    <div data-value="LAK">LAK</div>
-    <div data-value="LBP">LBP</div>
-    <div data-value="LKR">LKR</div>
-    <div data-value="LRD">LRD</div>
-    <div data-value="LSL">LSL</div>
-    <div data-value="LYD">LYD</div>
-    <div data-value="MAD">MAD</div>
-    <div data-value="MDL">MDL</div>
-    <div data-value="MGA">MGA</div>
-    <div data-value="MKD">MKD</div>
-    <div data-value="MMK">MMK</div>
-    <div data-value="MNT">MNT</div>
-    <div data-value="MOP">MOP</div>
-    <div data-value="MRU">MRU</div>
-    <div data-value="MUR">MUR</div>
-    <div data-value="MVR">MVR</div>
-    <div data-value="MWK">MWK</div>
-    <div data-value="MXN">MXN</div>
-    <div data-value="MYR">MYR</div>
-    <div data-value="MZN">MZN</div>
-    <div data-value="NAD">NAD</div>
-    <div data-value="NGN">NGN</div>
-    <div data-value="NIO">NIO</div>
-    <div data-value="NOK">NOK</div>
-    <div data-value="NPR">NPR</div>
-    <div data-value="NZD">NZD</div>
-    <div data-value="OMR">OMR</div>
-    <div data-value="PAB">PAB</div>
-    <div data-value="PEN">PEN</div>
-    <div data-value="PGK">PGK</div>
-    <div data-value="PHP">PHP</div>
-    <div data-value="PKR">PKR</div>
-    <div data-value="PLN">PLN</div>
-    <div data-value="PYG">PYG</div>
-    <div data-value="QAR">QAR</div>
-    <div data-value="RON">RON</div>
-    <div data-value="RSD">RSD</div>
-    <div data-value="RUB">RUB</div>
-    <div data-value="RWF">RWF</div>
-    <div data-value="SAR">SAR</div>
-    <div data-value="SBD">SBD</div>
-    <div data-value="SCR">SCR</div>
-    <div data-value="SDG">SDG</div>
-    <div data-value="SEK">SEK</div>
-    <div data-value="SGD">SGD</div>
-    <div data-value="SHP">SHP</div>
-    <div data-value="SLL">SLL</div>
-    <div data-value="SOS">SOS</div>
-    <div data-value="SRD">SRD</div>
-    <div data-value="SSP">SSP</div>
-    <div data-value="STN">STN</div>
-    <div data-value="SYP">SYP</div>
-    <div data-value="SZL">SZL</div>
-    <div data-value="THB">THB</div>
-    <div data-value="TJS">TJS</div>
-    <div data-value="TMT">TMT</div>
-    <div data-value="TND">TND</div>
-    <div data-value="TOP">TOP</div>
-    <div data-value="TRY">TRY</div>
-    <div data-value="TTD">TTD</div>
-    <div data-value="TVD">TVD</div>
-    <div data-value="TWD">TWD</div>
-    <div data-value="TZS">TZS</div>
-    <div data-value="UAH">UAH</div>
-    <div data-value="UGX">UGX</div>
-    <div data-value="USD">USD</div>
-    <div data-value="UYU">UYU</div>
-    <div data-value="UZS">UZS</div>
-    <div data-value="VES">VES</div>
-    <div data-value="VND">VND</div>
-    <div data-value="VUV">VUV</div>
-    <div data-value="WST">WST</div>
-    <div data-value="XAF">XAF</div>
-    <div data-value="XCD">XCD</div>
-    <div data-value="XDR">XDR</div>
-    <div data-value="XOF">XOF</div>
-    <div data-value="XPF">XPF</div>
-    <div data-value="YER">YER</div>
-    <div data-value="ZAR">ZAR</div>
-    <div data-value="ZMW">ZMW</div>
-    <div data-value="ZWL">ZWL</div>
-  </div>
-</div>
-
-<!-- Input Amount -->
-<label for="amount" class="amount">Enter Amount:</label>
-<input type="number" id="amount" placeholder="Enter amount to convert" />
-
-<p class="selcur selfrom">Selected From Currency: <span id="from-output">USD</span></p>
-<p class="selcur selto">Selected To Currency: <span id="to-output">EUR</span></p>
-
-<button id="send-request">Send Request</button>
-</div>
-<script>function setupDropdown(dropdownId, outputId) {
+ <script>
+  function setupDropdown(dropdownId, outputId) {
   const dropdown = document.getElementById(dropdownId);
   const selectedValue = dropdown.querySelector('.selected-value');
-  const options = dropdown.querySelectorAll('.dropdown-options div');
+  const options = dropdown.querySelectorAll('.currency');
   const output = document.getElementById(outputId);
 
   // Toggle dropdown visibility
@@ -677,17 +1069,17 @@ sendRequestButton.addEventListener('click', async () => {
   console.log('i am clicked')
 
   const apiKey = '252e8a4fdcc2587d2fc6c661'; // Replace with your actual API key
-  const apiUrl = `https://v6.exchangerate-api.com/v6/${apiKey}/pair/${fromCurrency}/${toCurrency}/${amount}`;
+  const apiUrl =` https://v6.exchangerate-api.com/v6/${apiKey}/pair/${fromCurrency}/${toCurrency}/${amount}`;
   const data = await fetchExchangeRate(apiUrl);
   
 
   function showPopup() {
     if (data && data.conversion_rate && data.conversion_result){
       const popup = document.getElementById('popup');
-      popup.textContent = `Converted Amount: ${data.conversion_result}`;
+      popup.textContent =` Converted Amount: ${data.conversion_result}`;
     }else{
       const popup = document.getElementById('popup');
-      popup.textContent = `'Failed to fetch conversion rate.`;
+      popup.textContent = `Failed to fetch conversion rate.`;
     }
     popup.classList.add('show');
     
@@ -705,39 +1097,65 @@ sendRequestButton.addEventListener('click', async () => {
 
 
 
+  function searchCurrencies() {
+    const searchInput = document.querySelector('#searchInputfrom').value.toLowerCase();
+    const currencies = document.getElementsByClassName('currency');
+
+    for (let i = 0; i < currencies.length; i++) {
+        const countryName = currencies[i].getElementsByClassName('cnname')[0].textContent.toLowerCase();
+        const currencyCode = currencies[i].dataset.value.toLowerCase();
+     
+
+// for from dropdown sropdown
+      
+        // for to sropdown
+        if (countryName.includes(searchInput) || currencyCode.includes(searchInput)) {
+            currencies[i].style.display = "block";
+        } else {
+            currencies[i].style.display = "none";
+        }
+
+    }
+}
+
+
+function searchCurrenciesto() {
+    const searchInput2 = document.querySelector('#searchInputto').value.toLowerCase();
+    const currencies = document.getElementsByClassName('currency');
+
+    for (let i = 0; i < currencies.length; i++) {
+        const countryName = currencies[i].getElementsByClassName('cnname')[0].textContent.toLowerCase();
+        const currencyCode = currencies[i].dataset.value.toLowerCase();
+     
+
+// for from dropdown sropdown
+      
+        // for to sropdown
+        if (countryName.includes(searchInput2) || currencyCode.includes(searchInput2)) {
+            currencies[i].style.display = "block";
+        } else {
+            currencies[i].style.display = "none";
+        }
+    }
+}
 
 
 
 
+document.querySelectorAll('.searchInput').forEach((input) => {
+input.addEventListener("click", () =>{
+  let drop = document.querySelectorAll('.dropdown');
+  drop.forEach((dro) => {
+    dro.classList.toggle("open");
+  })
+});
 
 
-    // if (data && data.conversion_rate && data.conversion_result) {
-    //   function showPopup() {
-    //     const popup = document.getElementById('popup');
-    //     popup.textContent = `Converted Amount: ${data.conversion_result}`;
-    //     popup.classList.add('show');
-        
-    //     // Remove after 3 seconds
-    //     setTimeout(() => {
-    //       popup.classList.remove('show');
-    //     }, 3000);
-    //     }
-    //     console.log(data.conversion_rate)
-        
-    // } else {
-    //   function showPopup() {
-    //     const popup = document.getElementById('popup');
-    //     popup.textContent = `'Failed to fetch conversion rate.`;
-    //     popup.classList.add('show');
-        
-    //     // Remove after 3 seconds
-    //     setTimeout(() => {
-    //       popup.classList.remove('show');
-    //     }, 3000);
-    //     }
-    //     console.log(`'Failed to fetch conversion rate.`)
-    // }</script>
-<div id="popup"></div>
+
+});
+ </script>
+  <div id="popup"></div>
 
 </body>
+
 </html>
